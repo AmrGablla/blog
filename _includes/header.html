@@ -21,11 +21,10 @@
 
         <div class="trigger">
           <a class="page-link" href="{{ '/about/' | relative_url }}">About</a>
-          <a class="page-link" href="{{ '/tags/' | relative_url }}">Tags</a>
-          <a class="page-link" href="{{ '/search/' | relative_url }}">Search</a>
+          <a class="page-link" href="{{ '/subscribe/' | relative_url }}">Subscribe</a>
           {%- for path in page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if my_page.title and my_page.title != "About" and my_page.title != "Tags" and my_page.title != "Search" -%}
+            {%- if my_page.title and my_page.title != "About" and my_page.title != "Archives" and my_page.title != "Subscribe" -%}
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}

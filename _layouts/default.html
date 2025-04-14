@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper with-sidebar">
+        <div class="sidebar-container">
+          <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+            <span class="toggle-icon"></span>
+          </button>
+        </div>
+        <div class="main-content">
+          {{ content }}
+        </div>
+      </div>
+    </main>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+    {%- include footer.html -%}
+
+    <style>
+      .with-sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      
+      .sidebar-container {
+        width: 25%;
+        position: relative;
+      }
+      
+      .sidebar {
+        padding-right: 20px;
+        border-right: 1px solid #e8e8e8;
+        height: 100%;
+        overflow-y: auto;
+      }
+      
+      .main-content {
+        width: 75%;
+        padding-left: 30px;
+      }
+      
+      .post-list-sidebar {
+        margin-left: 0;
+        list-style: none;
+        padding-left: 0;
+      }
+      
+      .post-list-sidebar li {
+        margin-bottom: 10px;
+      }
+      
+      .post-list-sidebar a {
+        display: block;
+        padding: 8px 10px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+        font-size: 0.95em;
+        line-height: 1.4;
+      }
+      
+      .post-list-sidebar a:hover {
+        background-color: #f0f0f0;
+        text-decoration: none;
+      }
+      
+      .post-list-sidebar a.active {
+        background-color: #e8e8e8;
+        font-weight: bold;
+      }
+      
+      .post-date-sidebar {
+        display: block;
+        font-size: 0.8em;
+        color: #828282;
+        margin-top: 3px;
+      }
+      
+      .sidebar-filter {
+        margin-bottom: 15px;
+      }
+      
+      #post-filter {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+      
+      .sidebar-toggle {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 10px;
+        top: 70px;
+        width: 40px;
+        height: 40px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      .toggle-icon, .toggle-icon:before, .toggle-icon:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 20px;
+        background: #333;
+        left: 10px;
+        transition: all 0.3s ease;
+      }
+      
+      .toggle-icon {
+        top: 19px;
+      }
+      
+      .toggle-icon:before {
+        top: -6px;
+      }
+      
+      .toggle-icon:after {
+        top: 6px;
+      }
+      
+      @media screen and (max-width: 800px) {
+        .sidebar-container {
+          width: 250px;
+          position: fixed;
+          left: -250px;
+          top: 0;
+          bottom: 0;
+          z-index: 99;
+          background: #fff;
+          transition: left 0.3s ease;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          overflow-y: auto;
+          padding-top: 60px;
+        }
+        
+        .sidebar-container.active {
+          left: 0;
+        }
+        
+        .sidebar {
+          border-right: none;
+          padding: 15px;
+          height: auto;
+        }
+        
+        .main-content {
+          width: 100%;
+          padding-left: 0;
+        }
+        
+        .sidebar-toggle {
+          display: block;
+        }
+        
+        body.sidebar-open {
+          overflow: hidden;
+        }
+        
+        body.sidebar-open:after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.5);
+          z-index: 98;
+        }
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        .sidebar {
+          border-color: #3d3d3d;
+        }
+        
+        .post-list-sidebar a:hover {
+          background-color: #2d2d2d;
+        }
+        
+        .post-list-sidebar a.active {
+          background-color: #3d3d3d;
+        }
+        
+        .sidebar-toggle {
+          background: #333;
+          border-color: #444;
+        }
+        
+        .toggle-icon, .toggle-icon:before, .toggle-icon:after {
+          background: #eee;
+        }
+        
+        #post-filter {
+          background-color: #2d2d2d;
+          color: #eee;
+          border-color: #444;
+        }
+        
+        .sidebar-container {
+          background: #222;
+        }
+        
+        .back-to-top {
+          background-color: #4dabf7;
+        }
+        
+        .back-to-top:hover {
+          background-color: #3793dd;
+        }
+      }
+      
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #2a7ae2;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 90;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .back-to-top:hover {
+        background-color: #1756a9;
+      }
+    </style>
+
+    <script>
+      // Toggle sidebar on mobile
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarContainer = document.querySelector('.sidebar-container');
+        const body = document.body;
+        
+        sidebarToggle.addEventListener('click', function() {
+          sidebarContainer.classList.toggle('active');
+          body.classList.toggle('sidebar-open');
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(e) {
+          if (body.classList.contains('sidebar-open') && 
+              !sidebarContainer.contains(e.target) && 
+              !sidebarToggle.contains(e.target)) {
+            sidebarContainer.classList.remove('active');
+            body.classList.remove('sidebar-open');
+          }
+        });
+        
+        // Post filter functionality
+        const postFilter = document.getElementById('post-filter');
+        const postItems = document.querySelectorAll('.post-item');
+        
+        postFilter.addEventListener('input', function() {
+          const filterValue = this.value.toLowerCase();
+          
+          postItems.forEach(function(item) {
+            const postTitle = item.querySelector('a').textContent.toLowerCase();
+            if (postTitle.includes(filterValue)) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        // Show button when page is scrolled down 300px
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+          } else {
+            backToTopButton.classList.remove('visible');
+          }
+        });
+        
+        // Smooth scroll to top when button is clicked
+        backToTopButton.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
+
+  </body>
+
+</html>

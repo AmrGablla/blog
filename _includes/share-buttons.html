@@ -5,28 +5,24 @@
   <!-- Twitter -->
   <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}" 
      target="_blank" 
+     class="share-button twitter"
      title="Share on Twitter">
-    <i class="fa fa-twitter-square fa-2x"></i>
-  </a>
-  
-  <!-- Facebook -->
-  <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}" 
-     target="_blank" 
-     title="Share on Facebook">
-    <i class="fa fa-facebook-square fa-2x"></i>
+    Twitter
   </a>
   
   <!-- LinkedIn -->
   <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}&title={{ page.title | url_encode }}&summary={{ page.description | url_encode }}&source={{ site.title }}" 
      target="_blank" 
+     class="share-button linkedin"
      title="Share on LinkedIn">
-    <i class="fa fa-linkedin-square fa-2x"></i>
+    LinkedIn
   </a>
   
   <!-- Email -->
   <a href="mailto:?subject={{ page.title | url_encode }}&body=Check out this post: {{ site.url }}{{ site.baseurl }}{{ page.url }}" 
+     class="share-button email"
      title="Share via Email">
-    <i class="fa fa-envelope-square fa-2x"></i>
+    Email
   </a>
 </div>
 
@@ -36,14 +32,38 @@
     text-align: center;
   }
   
-  .share-buttons a {
+  .share-button {
+    display: inline-block;
     margin: 0 5px;
+    padding: 8px 16px;
     text-decoration: none;
-    color: #828282;
-    transition: color 0.3s;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: opacity 0.3s;
   }
   
-  .share-buttons a:hover {
-    color: #111;
+  .share-button:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .twitter {
+    background-color: #1DA1F2;
+  }
+  
+  .linkedin {
+    background-color: #0077B5;
+  }
+  
+  .email {
+    background-color: #777777;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .share-button:hover {
+      opacity: 0.8;
+    }
   }
 </style>
