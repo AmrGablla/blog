@@ -1,0 +1,36 @@
+<!-- Utterances comments widget -->
+{% if page.comments != false %}
+<div class="comments">
+  <h2>Comments</h2>
+  <script src="https://utteranc.es/client.js"
+          repo="AmrGablla/blog-comments"
+          issue-term="pathname"
+          label="comment"
+          theme="preferred-color-scheme"
+          crossorigin="anonymous"
+          async>
+  </script>
+  <noscript>Please enable JavaScript to view the comments.</noscript>
+  <p class="comments-note">Comments are powered by <a href="https://utteranc.es" target="_blank">utteranc.es</a> and GitHub issues. You'll need a GitHub account to comment.</p>
+</div>
+
+<style>
+  .comments {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e8e8e8;
+  }
+  
+  .comments-note {
+    font-size: 14px;
+    color: #828282;
+    margin-top: 10px;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .comments {
+      border-top-color: #3d3d3d;
+    }
+  }
+</style>
+{% endif %}

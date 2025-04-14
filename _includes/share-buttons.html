@@ -1,0 +1,49 @@
+<!-- Social sharing buttons that appear below each post -->
+<div class="share-buttons">
+  <h3>Share this post:</h3>
+  
+  <!-- Twitter -->
+  <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}" 
+     target="_blank" 
+     title="Share on Twitter">
+    <i class="fa fa-twitter-square fa-2x"></i>
+  </a>
+  
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}" 
+     target="_blank" 
+     title="Share on Facebook">
+    <i class="fa fa-facebook-square fa-2x"></i>
+  </a>
+  
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}&title={{ page.title | url_encode }}&summary={{ page.description | url_encode }}&source={{ site.title }}" 
+     target="_blank" 
+     title="Share on LinkedIn">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+  
+  <!-- Email -->
+  <a href="mailto:?subject={{ page.title | url_encode }}&body=Check out this post: {{ site.url }}{{ site.baseurl }}{{ page.url }}" 
+     title="Share via Email">
+    <i class="fa fa-envelope-square fa-2x"></i>
+  </a>
+</div>
+
+<style>
+  .share-buttons {
+    margin: 30px 0;
+    text-align: center;
+  }
+  
+  .share-buttons a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #828282;
+    transition: color 0.3s;
+  }
+  
+  .share-buttons a:hover {
+    color: #111;
+  }
+</style>

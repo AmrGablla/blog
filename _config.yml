@@ -24,14 +24,62 @@ description: >- # this means to ignore newlines until "baseurl:"
   I'm a Software Engineer driven by a passion for meaningful work.
   
 baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  AmrGablla
+url: "https://amrgablla.github.io" # the base hostname & protocol for your site
+github_username: AmrGablla
 linkedin_username: amrgablla
+twitter_username: amrgablla
+author: Amr Gab Allah
+
+# SEO settings
+logo: /assets/images/logo.png
+lang: en
+locale: en_US
+
+# Site settings
+paginate: 5
+paginate_path: "/page:num/"
+permalink: /:year/:month/:day/:title/
 
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed 
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Content settings
+show_excerpts: true
+excerpt_separator: <!--more-->
+
+# Google Analytics
+google_analytics: # Add your tracking ID here
+
+# Custom collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
